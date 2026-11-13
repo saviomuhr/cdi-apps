@@ -1,6 +1,6 @@
 // Service worker do Plano de Ancoragem (gerado por build_ancoragem.py). Guarda o app no aparelho para abrir offline.
 // Cada build muda a VERSION, então o Chrome baixa a versão nova na próxima abertura com internet.
-const VERSION='pa-2a9e0213df', CACHE='app-'+VERSION, FONTS='fonts-v1';
+const VERSION='pa-356c2125df', CACHE='app-'+VERSION, FONTS='fonts-v1';
 const CORE=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-maskable-512.png','icon-apple-180.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE&&k!==FONTS).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
